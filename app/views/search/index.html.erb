@@ -1,11 +1,13 @@
 <h2>Showing the nearest <%= @search_results.count %> results</h2>
 
-<% @search_results.each do |station| %>
-  <ul class="station">
-    <li> Name: <%= station.name %> </li>
-    <li> Address: <%= station.address %> </li>
-    <li> Fuel Type(s): <%= station.fuel_type %> </li>
-    <li> Distance: <%= number_to_human(station.distance, units: {unit: "miles", thousand: "too far"}) %> </li>
-    <li> Access Times: <%= station.access_times %> </li>
-  </ul>
-<% end %>
+<container class="station-container">
+  <% @search_results.each do |station| %>
+    <ul class="station">
+      <li> Name: <%= station.name %> </li>
+      <li> Address: <%= station.address %> </li>
+      <li> Fuel Type(s): <%= station.fuel_type %> </li>
+      <li> Distance: <%= number_to_human(station.distance, units: {unit: "miles"}, precision: 2) %> </li>
+      <li> Access Times: <%= station.access_times %> </li>
+    </ul>
+  <% end %>
+</container>
