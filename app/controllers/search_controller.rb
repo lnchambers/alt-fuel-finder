@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def index
-    @search_results = AltFuelByZip.new(params[:q])
+    @search_results = StationsByZip.new(params[:q]).stations
   end
 
 end
