@@ -13,11 +13,13 @@ describe "As a user" do
       fill_in "q", with: "80203"
       click_on "Locate"
 
-      expect(page).to have_content("Name")
-      expect(page).to have_content("Address")
-      expect(page).to have_content("Fuel Types")
-      expect(page).to have_content("Distance")
-      expect(page).to have_content("Access Times")
+      within(first(".station")) do
+        expect(page).to have_content("Name: UDR")
+        expect(page).to have_content("Address: 800 Acoma St")
+        expect(page).to have_content("Fuel Type(s): ELEC")
+        expect(page).to have_content("Distance: 0.314 miles")
+        expect(page).to have_content("Access Times: 24 hours daily")
+      end
       # And for each of the stations I should see Name, Address, Fuel Types, Distance, and Access Times
     end
 
