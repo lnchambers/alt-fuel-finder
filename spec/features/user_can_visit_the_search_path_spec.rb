@@ -2,12 +2,14 @@ require "rails_helper"
 
 describe "As a user" do
   before :all do
-    json_response = File.open("./spec/fixtures/stations_by_zip.json")
+    @json_response = File.open("./spec/fixtures/stations_by_zip.json")
     stub_request(:get, "https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV["NREL_API_KEY"]}&location=80203&radius=6&status=E&fuel_type=ELEC,LPG&limit=10")
        .to_return(status: 200, body: json_response)
   end
   describe "when I visit the search page" do
-    it "I see the attributes of each station" do
+    it "I see the attributes of each station sorted by distance" do
+      stub_request(:get, "https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV["NREL_API_KEY"]}&location=80203&radius=6&status=E&fuel_type=ELEC,LPG&limit=10")
+         .to_return(status: 200, body: @json_response)
       visit "/"
 
       fill_in "q", with: "80203"
@@ -20,15 +22,12 @@ describe "As a user" do
         expect(page).to have_content("Distance: 0.314 miles")
         expect(page).to have_content("Access Times: 24 hours daily")
       end
-      # And for each of the stations I should see Name, Address, Fuel Types, Distance, and Access Times
-    end
-
-    it "I can see a list of the 10 closest stations to 80203" do
+      expect(page).to_not have_content("LNG")
+      expect(page).to_not have_content("HY")
+      expect(page).to_not have_content("E85")
+      expect(page).to_not have_content("CNG")
+      expect(page).to_not have_content("BD")
       # Then I should see a list of the 10 closest stations within 6 miles sorted by distance
-    end
-
-    it "I see stations limited to electric and propane" do
-      # And the stations should be limited to Electric and Propane
     end
   end
 end
