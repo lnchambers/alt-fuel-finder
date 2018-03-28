@@ -1,1 +1,11 @@
-results
+<h2>Your search returned <%= @search_results.count %> results</h2>
+
+<% @search_results.each do |station| %>
+  <ul>
+    <li> <%= station.name %> </li>
+    <li> <%= station.address %> </li>
+    <li> <%= station.fuel_type %> </li>
+    <li> <%= number_to_human(station.distance, units: {unit: "miles", thousand: "too far"}) %> </li>
+    <li> <%= station.access_times %> </li>
+  </ul>
+<% end %>

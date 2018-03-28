@@ -1,6 +1,7 @@
 class Station
 
   def initialize(parsed_json)
+    binding.pry
     @name = parsed_json[:station_name]
     @address = parsed_json[:street_address]
     @fuel_type = parsed_json[:fuel_type_code]

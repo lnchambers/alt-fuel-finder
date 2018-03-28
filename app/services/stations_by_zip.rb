@@ -5,7 +5,7 @@ class StationsByZip
   end
 
   def stations
-    AltFuelByZip.new(@zip).parsed_json[:fuel_stations].each do |station|
+    AltFuelByZip.new(@zip).parsed_json[:fuel_stations].map do |station|
       Station.new(station)
     end
   end
