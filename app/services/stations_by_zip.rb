@@ -1,11 +1,11 @@
 class StationsByZip
 
-  def initialize(zip = 00000)
+  def initialize(zip)
     @zip = zip
   end
 
   def stations
-    AltFuelByZip.new(@zip).parsed_json[:fuel_stations].map do |station|
+    AltFuelByZip.new(@zip).parsed_json_response[:fuel_stations].map do |station|
       Station.new(station)
     end
   end

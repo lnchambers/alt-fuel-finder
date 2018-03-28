@@ -1,6 +1,6 @@
 class AltFuelByZip
 
-  def initialize(zip = 00000)
+  def initialize(zip)
     @zip = zip
   end
 
@@ -8,7 +8,7 @@ class AltFuelByZip
     Faraday.new(api_url)
   end
 
-  def parsed_json
+  def parsed_json_response
     JSON.parse(conn.get.body, symbolize_names: true)
   end
 
