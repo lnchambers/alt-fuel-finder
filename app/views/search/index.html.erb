@@ -4,7 +4,7 @@
   <% @search_results.each do |station| %>
     <ul class="station">
       <li> Name: <%= station.name %> </li>
-      <li> Address: <%= station.address %> </li>
+      <li> Address: <%= station.full_address %> </li>
       <li> Fuel Type(s): <%= station.fuel_type %> </li>
       <li> Distance: <%= number_to_human(station.distance, units: {unit: "miles"}, precision: 2) %> </li>
       <li> Access Times: <%= station.access_times %> </li>

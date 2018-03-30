@@ -6,6 +6,9 @@ describe Station, type: :model do
       {
         :station_name=>"Opakawagalaga Eupanifahorious",
         :street_address=>"Yep, got one",
+        :city=>"Denver",
+        :state=>"State",
+        :zip=>"80123",
         :fuel_type_code=>"Pikachu!",
         :distance=>0.31422,
         :access_days_time=>"Do you feel lucky?"
@@ -13,7 +16,7 @@ describe Station, type: :model do
       )
 
     expect(station.name).to eq("Opakawagalaga Eupanifahorious")
-    expect(station.address).to eq("Yep, got one")
+    expect(station.full_address).to eq("Yep, got one, Denver, State 80123")
     expect(station.fuel_type).to eq("Pikachu!")
     expect(station.distance).to eq(0.31422)
     expect(station.access_times).to eq("Do you feel lucky?")
